@@ -41,12 +41,38 @@ function finalTally(){
         }
     }
     function chngO (){
-    document.getElementsByClassName('first')[0].classList.add('visible');
-    document.getElementById('finaltally').setAttribute('id','tally');
-    document.getElementById('tally').innerHTML ="<h1>Your order</h1>";
-    document.getElementById('mainh2').setAttribute('id','mainh1');
+        document.getElementsByClassName('first')[0].classList.add('visible');
+        document.getElementById('finaltally').setAttribute('id','tally');
+        document.getElementById('tally').innerHTML ="<h1>Your order</h1>";
+        document.getElementById('mainh2').setAttribute('id','mainh1');
             
-}
+    }
+    //New function for new button
+    function chng1()
+    {
+        var ft = document.getElementById('finaltally');
+        var tallyparas = ft.getElementsByTagName("p");
+        while (ft.firstChild) {
+            ft.removeChild(ft.firstChild);
+        }
+        var message = document.createElement("h1");
+        var messageText = document.createTextNode("Your order has been successfully submitted.");
+        message.setAttribute("id", "yourOrder2");
+        message.style.fontFamily = "sans-serif";
+        var success = document.getElementById('yourOrder2');
+        message.appendChild(messageText);
+        message.style.verticalAlign = "middle";
+        ft.appendChild(message);
+
+        var newOrderBtn = document.createElement("button");
+        newOrderBtn.textContent = "New Order";
+        newOrderBtn.addEventListener("click", chngO);
+        newOrderBtn.style.cssFloat ="left";
+        ft.appendChild(newOrderBtn);
+        
+        
+
+    }
    total(totalPrice);
     document.getElementById('mainh1').setAttribute('id','mainh2');
     var lbtn = document.createElement('button');
@@ -55,7 +81,17 @@ function finalTally(){
     lbtn.style.textAlign='center';
     var lastwindow = document.getElementById('finaltally');
     lastwindow.appendChild(lbtn);
-    lbtn.addEventListener('click',chngO);
+    lbtn.style.cssFloat = 'right';
+    lbtn.addEventListener('click', chngO);
+
+    //New button added here for accepting order//
+    var rbtn = document.createElement('button');
+    rbtn.textContent = 'Submit order';
+    rbtn.style.fontSize = '1rem';
+    rbtn.style.textAlign = 'center';
+    rbtn.style.cssFloat = 'left';
+    lastwindow.appendChild(rbtn);
+    rbtn.addEventListener('click', chng1);
 }
 
 
